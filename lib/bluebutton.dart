@@ -7,22 +7,32 @@ class BlueButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Icon(
-          Icons.radio_button_on,
-          color: Colors.grey[400],
+        Row(
+          children: [
+            Text(
+              'Button',
+              style: TextStyle(
+                color: Colors.grey,
+                letterSpacing: 2.0,
+              ),
+            ),
+          ],
         ),
         SizedBox(
-          width: 10.0,
+          height: 10.0,
         ),
-        Text(
-          '$button',
-          style: TextStyle(
-            color: Colors.grey[400],
-            fontSize: 18.0,
-            letterSpacing: 1.0,
-          ),
+        Row(
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              child: Image(
+                image: AssetImage('assets/button$button.png'),
+              ),
+            ),
+          ],
         ),
       ],
     );

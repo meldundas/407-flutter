@@ -56,6 +56,9 @@ class DigitalIn extends StatelessWidget {
                 image: AssetImage('assets/red-led-$in4.png'),
               ),
             ),
+            SizedBox(
+              width: 10,
+            ),
             Container(
               width: 50,
               height: 50,
