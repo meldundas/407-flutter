@@ -84,26 +84,26 @@ class _MyAppState extends State<MyApp> {
 
   String count;
 
-  String accX;
-  String accY;
-  String accZ;
+  String accX = '0';
+  String accY = '0';
+  String accZ = '0';
 
-  String adc0;
-  String adc1;
-  String adc2;
+  String adc0 = '0';
+  String adc1 = '0';
+  String adc2 = '0';
 
-  String in7;
-  String in6;
-  String in5;
-  String in4;
-  String in3;
-  String in2;
-  String in1;
-  String in0;
+  String in7 = '0';
+  String in6 = '0';
+  String in5 = '0';
+  String in4 = '0';
+  String in3 = '0';
+  String in2 = '0';
+  String in1 = '0';
+  String in0 = '0';
 
-  String button;
+  String button = '0';
 
-  String checksum;
+  String checksum = '0';
 
   int checksumValue = 0;
 
