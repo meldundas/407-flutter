@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter_3d_obj/flutter_3d_obj.dart';
+
+import 'dart:math' as math;
 
 class Accelerometer extends StatelessWidget {
-  final String accX, accY, accZ;
+  final int accX, accY, accZ;
 
   Accelerometer(this.accX, this.accY, this.accZ);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Icon(
-          Icons.airplanemode_on,
-          color: Colors.grey[400],
-        ),
+        Row(children: [
+          Transform.rotate(
+            angle: accX * math.pi / 180, //angle in radians
+            child: Icon(
+              Icons.airplanemode_on,
+              color: Colors.red,
+              size: 100,
+            ),
+          ),
+        ]),
         SizedBox(
           width: 10.0,
         ),

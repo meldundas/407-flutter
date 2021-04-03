@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 //import 'package:flutter_gauge/flutter_gauge.dart';
+//import 'package:moving_average/moving_average.dart';
 
 import 'package:stm32/packet.dart';
 import 'package:stm32/packetcount.dart';
@@ -26,6 +27,7 @@ int main() {
   }
 
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
 
@@ -109,6 +111,31 @@ class _MyAppState extends State<MyApp> {
 
   int checksumErrors = 0;
 
+  static int window = 32; //number of samples to average
+  //acceleromter averaging
+  int accCount = 0;
+
+  int accXAverage = 0;
+  var accXList = List.filled(window, 0);
+
+  int accYAverage = 0;
+  var accYList = List.filled(window, 0);
+
+  int accZAverage = 0;
+  var accZList = List.filled(window, 0);
+
+  //adc averaging
+  int adcCount = 0;
+
+  int adc0Average = 0;
+  var adc0List = List.filled(window, 0);
+
+  int adc1Average = 0;
+  var adc1List = List.filled(window, 0);
+
+  int adc2Average = 0;
+  var adc2List = List.filled(window, 0);
+
   @override
   void initState() {
     super.initState();
@@ -165,6 +192,52 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    //convert acc hex strings to signed decimal numbers
+    int decX = int.parse(accX, radix: 16);
+    if (decX > 32768) decX = decX - 65536;
+
+    int decY = int.parse(accY, radix: 16);
+    if (decY > 32768) decY = decY - 65536;
+
+    int decZ = int.parse(accZ, radix: 16);
+    if (decZ > 32768) decZ = decZ - 65536;
+
+    //fill acc lists
+    accXList[adcCount] = decX;
+    accYList[adcCount] = decY;
+    accZList[adcCount] = decZ;
+
+    accCount++;
+    accCount %= window;
+
+    accXList.forEach((e) => accXAverage += e);
+    accXAverage = accXAverage ~/ window;
+
+    accYList.forEach((e) => accYAverage += e);
+    accYAverage = accYAverage ~/ window;
+
+    accZList.forEach((e) => accZAverage += e);
+    accZAverage = accZAverage ~/ window;
+
+    //fill adc lists
+    adc0List[adcCount] = int.parse(adc0);
+    adc1List[adcCount] = int.parse(adc1);
+    adc2List[adcCount] = int.parse(adc2);
+    // print(adc0List);
+    // print(adc1List);
+    // print(adc2List);
+    adcCount++;
+    adcCount %= window;
+
+    adc0List.forEach((e) => adc0Average += e);
+    adc0Average = adc0Average ~/ window;
+
+    adc1List.forEach((e) => adc1Average += e);
+    adc1Average = adc1Average ~/ window;
+
+    adc2List.forEach((e) => adc2Average += e);
+    adc2Average = adc2Average ~/ window;
+
     return new Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -191,8 +264,8 @@ class _MyAppState extends State<MyApp> {
               ),
               Packet(mys),
               PacketCount(count),
-              Accelerometer(accX, accY, accZ),
-              ADC(adc0, adc1, adc2),
+              Accelerometer(accXAverage, accYAverage, accZAverage),
+              ADC(adc0Average, adc1Average, adc2Average),
               DigitalIn(in7, in6, in5, in4, in3, in2, in1, in0),
               BlueButton(button),
               Checksum(),

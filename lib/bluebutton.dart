@@ -26,8 +26,8 @@ class BlueButton extends StatelessWidget {
         Row(
           children: [
             Container(
-              width: 50,
-              height: 50,
+              width: 75,
+              height: 75,
               child: Image(
                 image: AssetImage('assets/button$button.png'),
               ),
