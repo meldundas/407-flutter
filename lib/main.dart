@@ -156,7 +156,7 @@ class _MyAppState extends State<MyApp> {
       }
 
       //print both
-      print('$checksumFromSerial  $checksumValue');
+      //print('$checksumFromSerial  $checksumValue');
 
       if (checksumFromSerial == checksumValue) {
         setState(() {
