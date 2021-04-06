@@ -28,9 +28,6 @@ class PacketCount extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(
-          height: 30.0,
-        )
       ],
     );
   }

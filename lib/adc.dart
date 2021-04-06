@@ -53,6 +53,14 @@ class _ADCState extends State<ADC> {
               lineWidth: 10.0,
               percent: widget.adc2 / 4095,
               progressColor: Colors.green,
+              footer: Text(
+                '${widget.adc2}',
+                style: TextStyle(
+                  color: Colors.grey[400],
+                  fontSize: 18.0,
+                  letterSpacing: 1.0,
+                ),
+              ),
               center: Text(
                 "${adc2Voltage.toStringAsFixed(2)} V",
                 style: TextStyle(
@@ -71,6 +79,14 @@ class _ADCState extends State<ADC> {
               lineWidth: 10.0,
               percent: widget.adc1 / 4095,
               progressColor: Colors.green,
+              footer: Text(
+                '${widget.adc1}',
+                style: TextStyle(
+                  color: Colors.grey[400],
+                  fontSize: 18.0,
+                  letterSpacing: 1.0,
+                ),
+              ),
               center: Text(
                 "${adc1Voltage.toStringAsFixed(2)} V",
                 style: TextStyle(
@@ -89,6 +105,14 @@ class _ADCState extends State<ADC> {
               lineWidth: 10.0,
               percent: widget.adc0 / 4095,
               progressColor: Colors.green,
+              footer: Text(
+                '${widget.adc0}',
+                style: TextStyle(
+                  color: Colors.grey[400],
+                  fontSize: 18.0,
+                  letterSpacing: 1.0,
+                ),
+              ),
               center: Text(
                 "${adc0Voltage.toStringAsFixed(2)} V",
                 style: TextStyle(
@@ -104,25 +128,25 @@ class _ADCState extends State<ADC> {
       SizedBox(
         height: 10.0,
       ),
-      Row(
-        children: [
-          Icon(
-            Icons.ac_unit,
-            color: Colors.grey[400],
-          ),
-          SizedBox(
-            width: 10.0,
-          ),
-          Text(
-            '${widget.adc2}   ${widget.adc1}   ${widget.adc0}',
-            style: TextStyle(
-              color: Colors.grey[400],
-              fontSize: 18.0,
-              letterSpacing: 1.0,
-            ),
-          ),
-        ],
-      ),
+      // Row(
+      //   children: [
+      //     Icon(
+      //       Icons.ac_unit,
+      //       color: Colors.grey[400],
+      //     ),
+      //     SizedBox(
+      //       width: 10.0,
+      //     ),
+      //     Text(
+      //       '${widget.adc2}   ${widget.adc1}   ${widget.adc0}',
+      //       style: TextStyle(
+      //         color: Colors.grey[400],
+      //         fontSize: 18.0,
+      //         letterSpacing: 1.0,
+      //       ),
+      //     ),
+      //   ],
+      // ),
     ]);
   }
 }

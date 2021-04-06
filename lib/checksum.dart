@@ -1,34 +1,63 @@
 import 'package:flutter/material.dart';
 
 class Checksum extends StatefulWidget {
+  final int checksumFromSerial, checksumValue, checksumErrors;
+
+  Checksum(this.checksumFromSerial, this.checksumValue, this.checksumErrors);
+
   @override
   _ChecksumState createState() => _ChecksumState();
 }
 
 class _ChecksumState extends State<Checksum> {
-  String checksum = '0';
-  int checksumErrors = 0;
-
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Icon(
-          Icons.radio_button_on,
-          color: Colors.grey[400],
+        Row(
+          children: [
+            Text(
+              'Checksum',
+              style: TextStyle(
+                color: Colors.grey,
+                letterSpacing: 2.0,
+              ),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+          ],
         ),
-        SizedBox(
-          width: 10.0,
+        Row(
+          children: [
+            Icon(
+              Icons.radio_button_on,
+              color: Colors.grey[400],
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(
+              '${widget.checksumValue}',
+              style: TextStyle(
+                color: Colors.grey[400],
+                fontSize: 18.0,
+                letterSpacing: 1.0,
+              ),
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(
+              'Errors: ${widget.checksumErrors}',
+              style: TextStyle(
+                color: Colors.grey[400],
+                fontSize: 18.0,
+                letterSpacing: 1.0,
+              ),
+            ),
+          ],
         ),
-        Text(
-          '$checksum',
-          style: TextStyle(
-            color: Colors.grey[400],
-            fontSize: 18.0,
-            letterSpacing: 1.0,
-          ),
-        ),
-        Text('Errors: $checksumErrors'),
       ],
     );
   }

@@ -106,10 +106,11 @@ class _MyAppState extends State<MyApp> {
   String button = '0';
 
   String checksum = '0';
+  int checksumFromSerial = 0;
 
   int checksumValue = 0;
 
-  int checksumErrors = 0;
+  static int checksumErrors = 0;
 
   static int window = 32; //number of samples to average
   //acceleromter averaging
@@ -146,7 +147,7 @@ class _MyAppState extends State<MyApp> {
 
       //checksum in string
       checksum = mys.substring(39, 42);
-      int checksumFromSerial = int.parse(checksum);
+      checksumFromSerial = int.parse(checksum);
 
       //calculate what checksum is from received data
       checksumValue = 0;
@@ -267,12 +268,26 @@ class _MyAppState extends State<MyApp> {
                 color: Colors.grey[800],
               ),
               Packet(mys),
-              PacketCount(count),
+              Row(
+                children: [
+                  PacketCount(count),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Checksum(checksumFromSerial, checksumValue, checksumErrors),
+                ],
+              ),
               Accelerometer(accXAverage, accYAverage, accZAverage),
               ADC(adc0Average, adc1Average, adc2Average),
-              DigitalIn(in7, in6, in5, in4, in3, in2, in1, in0),
-              BlueButton(button),
-              Checksum(),
+              Row(
+                children: [
+                  DigitalIn(in7, in6, in5, in4, in3, in2, in1, in0),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  BlueButton(button),
+                ],
+              ),
             ],
           ),
         ),

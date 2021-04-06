@@ -35,14 +35,11 @@ class Packet extends StatelessWidget {
                 ], //tabular font spacing
                 color: Colors.amberAccent[200],
                 letterSpacing: 1.0,
-                fontSize: 28.0,
+                fontSize: 22.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ],
-        ),
-        SizedBox(
-          height: 10.0,
         ),
       ],
     );
