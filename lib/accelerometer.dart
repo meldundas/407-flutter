@@ -36,6 +36,23 @@ class Accelerometer extends StatelessWidget {
     return Center(
       child: Column(
         children: [
+          SizedBox(
+            height: 10.0,
+          ),
+          Row(
+            children: [
+              Text(
+                'Accelerometer',
+                style: TextStyle(
+                  color: Colors.grey,
+                  letterSpacing: 2.0,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
           Transform(
             transform: Matrix4(
               1,

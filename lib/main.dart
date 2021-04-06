@@ -223,18 +223,22 @@ class _MyAppState extends State<MyApp> {
     adc0List[adcCount] = int.parse(adc0);
     adc1List[adcCount] = int.parse(adc1);
     adc2List[adcCount] = int.parse(adc2);
-    // print(adc0List);
+    //print(adc0List);
     // print(adc1List);
     // print(adc2List);
     adcCount++;
     adcCount %= window;
 
+    adc0Average = 0; //clear previous values
     adc0List.forEach((e) => adc0Average += e);
     adc0Average = adc0Average ~/ window;
+    //print(adc0Average);
 
+    adc1Average = 0;
     adc1List.forEach((e) => adc1Average += e);
     adc1Average = adc1Average ~/ window;
 
+    adc2Average = 0;
     adc2List.forEach((e) => adc2Average += e);
     adc2Average = adc2Average ~/ window;
 
