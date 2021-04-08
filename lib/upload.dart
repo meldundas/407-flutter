@@ -7,6 +7,7 @@
 /// checksum xxx calculated from 3-14
 /// //checksum 576-588 with onboard LEDs, 00000000xxxx = 576-580
 
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -64,6 +65,12 @@ class _UploadState extends State<Upload> {
     setState(() {
       data = data + checksumValue.toString();
     });
+
+    List<int> mylist = data.codeUnits; //string to List<int>
+
+    Uint8List sendPacket = Uint8List.fromList(mylist); //List<int> to Uint8List
+
+    port.write(sendPacket);
 
     return Scaffold(
       backgroundColor: Colors.grey[900],
