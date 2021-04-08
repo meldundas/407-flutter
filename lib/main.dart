@@ -7,11 +7,14 @@ import 'package:flutter/material.dart';
 
 import 'package:stm32/packet.dart';
 import 'package:stm32/packetcount.dart';
+import 'package:stm32/checksum.dart';
 import 'package:stm32/accelerometer.dart';
 import 'package:stm32/adc.dart';
 import 'package:stm32/digitalin.dart';
 import 'package:stm32/bluebutton.dart';
-import 'package:stm32/checksum.dart';
+
+import 'package:stm32/upload.dart';
+import 'package:stm32/about.dart';
 
 String s = '';
 var name;
@@ -28,7 +31,31 @@ int main() {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: MyApp(),
+    home: DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('STM32F407'),
+          centerTitle: true,
+          backgroundColor: Colors.grey[850],
+          elevation: 0.0,
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.arrow_downward)),
+              Tab(icon: Icon(Icons.arrow_upward)),
+              Tab(icon: Icon(Icons.settings_applications)),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            MyApp(),
+            Upload(),
+            About(),
+          ],
+        ),
+      ),
+    ),
   ));
 
   // getData();
@@ -243,14 +270,8 @@ class _MyAppState extends State<MyApp> {
     adc2List.forEach((e) => adc2Average += e);
     adc2Average = adc2Average ~/ window;
 
-    return new Scaffold(
+    return Scaffold(
       backgroundColor: Colors.grey[900],
-      appBar: AppBar(
-        title: Text('STM32F407'),
-        centerTitle: true,
-        backgroundColor: Colors.grey[850],
-        elevation: 0.0,
-      ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
         child: SingleChildScrollView(
