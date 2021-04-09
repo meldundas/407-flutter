@@ -24,7 +24,9 @@ class Upload extends StatefulWidget {
 }
 
 class _UploadState extends State<Upload> {
-  bool isSwitched;
+  bool isSwitched = false;
+  int checksumValue = 0;
+
   String out7 = '0';
   String out6 = '0';
   String out5 = '0';
@@ -56,14 +58,15 @@ class _UploadState extends State<Upload> {
         green;
 
     //calculate what checksum for sent data
-    int checksumValue = 0;
+    checksumValue = 0;
     for (int loop = 3; loop < 15; loop++) {
       checksumValue += data.codeUnitAt(loop);
       checksumValue %= 1000;
     }
 
     setState(() {
-      data = data + checksumValue.toString();
+      data = data +
+          checksumValue.toString().padLeft(3, '0'); //leading zeros in checksum
     });
 
     List<int> mylist = data.codeUnits; //string to List<int>
@@ -72,6 +75,8 @@ class _UploadState extends State<Upload> {
 
     port.write(sendPacket);
 
+    //print(data);
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       body: Padding(
@@ -79,39 +84,6 @@ class _UploadState extends State<Upload> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Vswitch(7),
-                Vswitch(6),
-                Vswitch(5),
-                Vswitch(4),
-                SizedBox(
-                  width: 20,
-                ),
-                Vswitch(3),
-                Vswitch(2),
-                Vswitch(1),
-                Vswitch(0),
-                Transform.rotate(
-                  angle: -3.14 / 2, //-90 degrees
-                  child: Switch(
-                    value: isSwitched,
-                    onChanged: (value) {
-                      print('$isSwitched');
-                      setState(() {
-                        isSwitched = value;
-                        if (isSwitched)
-                          out0 = '1';
-                        else
-                          out0 = '0';
-                      });
-                    },
-                    activeTrackColor: Colors.red[900],
-                    activeColor: Colors.red[600],
-                  ),
-                )
-              ],
-            ),
             SizedBox(
               height: 20,
             ),
@@ -141,11 +113,90 @@ class _UploadState extends State<Upload> {
               height: 20,
             ),
             Text(
+              "Digital Outputs",
+              style: TextStyle(
+                color: Colors.grey,
+                letterSpacing: 2.0,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Vswitch(
+                    active: out7 == '1',
+                    onChanged: (isSwitched) {
+                      setState(() {
+                        out7 = isSwitched == true ? '1' : '0';
+                      });
+                    }),
+                Vswitch(
+                    active: out6 == '1',
+                    onChanged: (isSwitched) {
+                      setState(() {
+                        out6 = isSwitched == true ? '1' : '0';
+                      });
+                    }),
+                Vswitch(
+                    active: out5 == '1',
+                    onChanged: (isSwitched) {
+                      setState(() {
+                        out5 = isSwitched == true ? '1' : '0';
+                      });
+                    }),
+                Vswitch(
+                    active: out4 == '1',
+                    onChanged: (isSwitched) {
+                      setState(() {
+                        out4 = isSwitched == true ? '1' : '0';
+                      });
+                    }),
+                SizedBox(
+                  width: 20,
+                ),
+                Vswitch(
+                    active: out3 == '1',
+                    onChanged: (isSwitched) {
+                      setState(() {
+                        out3 = isSwitched == true ? '1' : '0';
+                      });
+                    }),
+                Vswitch(
+                    active: out2 == '1',
+                    onChanged: (isSwitched) {
+                      setState(() {
+                        out2 = isSwitched == true ? '1' : '0';
+                      });
+                    }),
+                Vswitch(
+                    active: out1 == '1',
+                    onChanged: (isSwitched) {
+                      setState(() {
+                        out1 = isSwitched == true ? '1' : '0';
+                      });
+                    }),
+                Vswitch(
+                    active: out0 == '1',
+                    onChanged: (isSwitched) {
+                      setState(() {
+                        out0 = isSwitched == true ? '1' : '0';
+                      });
+                    }),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
               "Onboard LEDs",
               style: TextStyle(
                 color: Colors.grey,
                 letterSpacing: 2.0,
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Row(
               children: [

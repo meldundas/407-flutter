@@ -5,6 +5,9 @@ class About extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: []);
+    return Scaffold(
+      backgroundColor: Colors.grey[900],
+      body: Text('about'),
+    );
   }
 }
