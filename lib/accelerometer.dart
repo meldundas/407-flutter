@@ -31,6 +31,9 @@ class Accelerometer extends StatelessWidget {
     double pitch = math.atan(aX / math.sqrt(math.pow(aY, 2) + math.pow(aZ, 2)));
     double roll = math.atan(aY / math.sqrt(math.pow(aX, 2) + math.pow(aZ, 2)));
 
+    // if (aY < 0) {
+    //   pitch *= -1;
+    // }
     //print('Pitch: $pitch  Roll: $roll');
 
     return Center(

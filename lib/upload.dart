@@ -75,7 +75,8 @@ class _UploadState extends State<Upload> {
 
     port.write(sendPacket);
 
-    //print(data);
+    print(data);
+    //print(sendPacket);
 
     return Scaffold(
       backgroundColor: Colors.grey[900],

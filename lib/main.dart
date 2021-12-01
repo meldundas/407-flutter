@@ -1,4 +1,6 @@
-import 'package:dart_serial_port/dart_serial_port.dart';
+//import 'package:dart_serial_port/dart_serial_port.dart';
+//import 'package:libserialport/libserialport.dart';
+import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -291,7 +293,7 @@ class _MyAppState extends State<MyApp> {
               Packet(mys),
               Row(
                 children: [
-                  PacketCount(count),
+                  PacketCount(count ?? "000"),
                   SizedBox(
                     width: 30,
                   ),
